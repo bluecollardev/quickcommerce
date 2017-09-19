@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OcProductAttribute" table="oc2_product_attribute">
+    <!--
+	<indexes>
+      <index name="IDX_ABF027FF4584665A" columns="product_id"/>
+      <index name="IDX_ABF027FF82F1BAF4" columns="language_id"/>
+    </indexes>
+	-->
+    <id name="product" association-key="true"/>
+    <id name="attribute" association-key="true"/>
+    <id name="language" association-key="true"/>
+	
+    <field name="text" type="text" column="text" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+	
+    <many-to-one field="product" target-entity="OcProduct" inversed-by="attribute" fetch="LAZY">
+      <join-columns>
+        <join-column name="product_id" referenced-column-name="product_id"/>
+      </join-columns>
+    </many-to-one>
+	
+	<many-to-one field="attribute" target-entity="OcAttribute" inversed-by="productAttribute" fetch="EAGER">
+      <join-columns>
+        <join-column name="attribute_id" referenced-column-name="attribute_id"/>
+      </join-columns>
+    </many-to-one>
+	
+	<many-to-one field="language" target-entity="OcLanguage" fetch="LAZY">
+      <join-columns>
+        <join-column name="language_id" referenced-column-name="language_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

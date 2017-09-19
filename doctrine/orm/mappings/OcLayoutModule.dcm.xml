@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OcLayoutModule" table="oc2_layout_module">
+    <indexes>
+      <index name="IDX_1A486758C22AA1A" columns="layout_id"/>
+    </indexes>
+    <id name="layoutModuleId" type="integer" column="layout_module_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="code" type="string" column="code" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="position" type="string" column="position" length="14" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="sortOrder" type="integer" column="sort_order" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="layout" target-entity="OcLayout" fetch="LAZY">
+      <join-columns>
+        <join-column name="layout_id" referenced-column-name="layout_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

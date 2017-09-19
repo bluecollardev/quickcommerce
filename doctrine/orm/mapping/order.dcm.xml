@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <entity name="Doctrine\Tests\ORM\Mapping\Order" table="oc2_order">
+        <id name="order_id" type="integer" column="order_id">
+            <generator strategy="AUTO"/>
+            <sequence-generator sequence-name="tablename_seq" allocation-size="100" initial-value="1" />
+        </id>
+
+        <field name="order_id" column="order_id" />
+		<field name="invoice_no" column="invoice_no" />
+		<field name="invoice_prefix" column="invoice_prefix" />
+		<field name="store_id" column="store_id" />
+		<field name="store_name" column="store_name" />
+		<field name="store_url" column="store_url" />
+		<field name="customer_id" column="customer_id" />
+		<field name="customer_group_id" column="customer_group_id" />
+		<field name="firstname" column="firstname" />
+		<field name="lastname" column="lastname" />
+		<field name="email" column="email" />
+		<field name="telephone" column="telephone" />
+		<field name="fax" column="fax" />
+		<field name="custom_field" column="custom_field" />
+		<field name="payment_firstname" column="payment_firstname" />
+		<field name="payment_lastname" column="payment_lastname" />
+		<field name="payment_company" column="payment_company" />
+		<field name="payment_address_1" column="payment_address_1" />
+		<field name="payment_address_2" column="payment_address_2" />
+		<field name="payment_city" column="payment_city" />
+		<field name="payment_postcode" column="payment_postcode" />
+		<field name="payment_country" column="payment_country" />
+		<field name="payment_country_id" column="payment_country_id" />
+		<field name="payment_zone" column="payment_zone" />
+		<field name="payment_zone_id" column="payment_zone_id" />
+		<field name="payment_address_format" column="payment_address_format" />
+		<field name="payment_custom_field" column="payment_custom_field" />
+		<field name="payment_method" column="payment_method" />
+		<field name="payment_code" column="payment_code" />
+		<field name="shipping_firstname" column="shipping_firstname" />
+		<field name="shipping_lastname" column="shipping_lastname" />
+		<field name="shipping_company" column="shipping_company" />
+		<field name="shipping_address_1" column="shipping_address_1" />
+		<field name="shipping_address_2" column="shipping_address_2" />
+		<field name="shipping_city" column="shipping_city" />
+		<field name="shipping_postcode" column="shipping_postcode" />
+		<field name="shipping_country" column="shipping_country" />
+		<field name="shipping_country_id" column="shipping_country_id" />
+		<field name="shipping_zone" column="shipping_zone" />
+		<field name="shipping_zone_id" column="shipping_zone_id" />
+		<field name="shipping_address_format" column="shipping_address_format" />
+		<field name="shipping_custom_field" column="shipping_custom_field" />
+		<field name="shipping_method" column="shipping_method" />
+		<field name="shipping_code" column="shipping_code" />
+		<field name="comment" column="comment" />
+		<field name="total" column="total" />
+		<field name="order_status_id" column="order_status_id" />
+		<field name="affiliate_id" column="affiliate_id" />
+		<field name="commission" column="commission" />
+		<field name="marketing_id" column="marketing_id" />
+		<field name="tracking" column="tracking" />
+		<field name="language_id" column="language_id" />
+		<field name="currency_id" column="currency_id" />
+		<field name="currency_code" column="currency_code" />
+		<field name="currency_value" column="currency_value" />
+		<field name="ip" column="ip" />
+		<field name="forwarded_ip" column="forwarded_ip" />
+		<field name="user_agent" column="user_agent" />
+		<field name="accept_language" column="accept_language" />
+		<field name="date_added" column="date_added" />
+		<field name="date_modified" column="date_modified" />
+		
+    </entity>
+
+</doctrine-mapping>

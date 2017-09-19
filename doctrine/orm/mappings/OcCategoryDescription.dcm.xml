@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OcCategoryDescription" table="oc2_category_description">
+    <!--
+	<indexes>
+      <index name="IDX_ABF027FF4584665A" columns="category_id"/>
+      <index name="IDX_ABF027FF82F1BAF4" columns="language_id"/>
+    </indexes>
+	-->
+    <id name="category" association-key="true"/>
+    <id name="language" association-key="true"/>
+	
+    <field name="name" type="text" column="name" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+	<field name="description" type="text" column="description" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+	<field name="metaTitle" type="text" column="meta_title" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+		<option name="default"></option>
+      </options>
+    </field>
+	<field name="metaDescription" type="text" column="meta_description" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+		<option name="default"></option>
+      </options>
+    </field>
+	<field name="metaKeyword" type="text" column="meta_keyword" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+		<option name="default"></option>
+      </options>
+    </field>
+    
+	<many-to-one field="language" target-entity="OcLanguage" fetch="LAZY">
+      <join-columns>
+        <join-column name="language_id" referenced-column-name="language_id"/>
+      </join-columns>
+    </many-to-one>
+	
+    <many-to-one field="category" target-entity="OcCategory" inversed-by="description" fetch="LAZY">
+      <join-columns>
+        <join-column name="category_id" referenced-column-name="category_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

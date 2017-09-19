@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\OpenCart\Fraudlabspro" table="oc2_fraudlabspro">
+    <id name="orderId" type="string" column="order_id" length="11">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="isCountryMatch" type="string" column="is_country_match" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isHighRiskCountry" type="string" column="is_high_risk_country" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="distanceInKm" type="string" column="distance_in_km" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="distanceInMile" type="string" column="distance_in_mile" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipAddress" type="string" column="ip_address" length="15" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipCountry" type="string" column="ip_country" length="2" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipContinent" type="string" column="ip_continent" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipRegion" type="string" column="ip_region" length="21" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipCity" type="string" column="ip_city" length="21" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipLatitude" type="string" column="ip_latitude" length="21" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipLongitude" type="string" column="ip_longitude" length="21" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipTimezone" type="string" column="ip_timezone" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipElevation" type="string" column="ip_elevation" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipDomain" type="string" column="ip_domain" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipMobileMnc" type="string" column="ip_mobile_mnc" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipMobileMcc" type="string" column="ip_mobile_mcc" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipMobileBrand" type="string" column="ip_mobile_brand" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipNetspeed" type="string" column="ip_netspeed" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipIspName" type="string" column="ip_isp_name" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipUsageType" type="string" column="ip_usage_type" length="30" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="isFreeEmail" type="string" column="is_free_email" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isNewDomainName" type="string" column="is_new_domain_name" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isProxyIpAddress" type="string" column="is_proxy_ip_address" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isBinFound" type="string" column="is_bin_found" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isBinCountryMatch" type="string" column="is_bin_country_match" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isBinNameMatch" type="string" column="is_bin_name_match" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isBinPhoneMatch" type="string" column="is_bin_phone_match" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isBinPrepaid" type="string" column="is_bin_prepaid" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isAddressShipForward" type="string" column="is_address_ship_forward" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isBillShipCityMatch" type="string" column="is_bill_ship_city_match" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isBillShipStateMatch" type="string" column="is_bill_ship_state_match" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isBillShipCountryMatch" type="string" column="is_bill_ship_country_match" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isBillShipPostalMatch" type="string" column="is_bill_ship_postal_match" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isIpBlacklist" type="string" column="is_ip_blacklist" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isEmailBlacklist" type="string" column="is_email_blacklist" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isCreditCardBlacklist" type="string" column="is_credit_card_blacklist" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isDeviceBlacklist" type="string" column="is_device_blacklist" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="isUserBlacklist" type="string" column="is_user_blacklist" length="2" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="fraudlabsproScore" type="string" column="fraudlabspro_score" length="3" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="fraudlabsproDistribution" type="string" column="fraudlabspro_distribution" length="3" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="fraudlabsproStatus" type="string" column="fraudlabspro_status" length="10" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="fraudlabsproId" type="string" column="fraudlabspro_id" length="15" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="fraudlabsproError" type="string" column="fraudlabspro_error" length="3" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="fraudlabsproMessage" type="string" column="fraudlabspro_message" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="fraudlabsproCredits" type="string" column="fraudlabspro_credits" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="apiKey" type="string" column="api_key" length="32" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

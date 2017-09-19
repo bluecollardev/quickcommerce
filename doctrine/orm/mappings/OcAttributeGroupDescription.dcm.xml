@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OcAttributeGroupDescription" table="oc2_attribute_group_description">
+    <!--
+	<indexes>
+      <index name="IDX_ABF027FF4584665A" columns="attribute_group_id"/>
+      <index name="IDX_ABF027FF82F1BAF4" columns="language_id"/>
+    </indexes>
+	-->
+    <id name="attributeGroup" association-key="true"/>
+    <id name="language" association-key="true"/>
+	
+    <field name="name" type="text" column="name" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+	
+	<many-to-one field="language" target-entity="OcLanguage" fetch="LAZY">
+      <join-columns>
+        <join-column name="language_id" referenced-column-name="language_id"/>
+      </join-columns>
+    </many-to-one>
+	
+    <many-to-one field="attributeGroup" target-entity="OcAttributeGroup" inversed-by="description" fetch="LAZY">
+      <join-columns>
+        <join-column name="attribute_group_id" referenced-column-name="attribute_group_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OcOrder" table="oc2_order">
+    <indexes>
+      <index name="IDX_1864E5A1B092A811" columns="store_id"/>
+      <index name="IDX_1864E5A19395C3F3" columns="customer_id"/>
+      <index name="IDX_1864E5A1D2919A68" columns="customer_group_id"/>
+      <index name="IDX_1864E5A1D7707B45" columns="order_status_id"/>
+      <index name="IDX_1864E5A19F12C49A" columns="affiliate_id"/>
+      <index name="IDX_1864E5A1C6DCB66C" columns="marketing_id"/>
+      <index name="IDX_1864E5A182F1BAF4" columns="language_id"/>
+      <index name="IDX_1864E5A138248176" columns="currency_id"/>
+    </indexes>
+    <id name="orderId" type="integer" column="order_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="invoiceNo" type="integer" column="invoice_no" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="invoicePrefix" type="string" column="invoice_prefix" length="26" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="storeName" type="string" column="store_name" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="storeUrl" type="string" column="store_url" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="firstname" type="string" column="firstname" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="lastname" type="string" column="lastname" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="email" type="string" column="email" length="96" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="telephone" type="string" column="telephone" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="fax" type="string" column="fax" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="customField" type="text" column="custom_field" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentFirstname" type="string" column="payment_firstname" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentLastname" type="string" column="payment_lastname" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentCompany" type="string" column="payment_company" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentAddress1" type="string" column="payment_address_1" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentAddress2" type="string" column="payment_address_2" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentCity" type="string" column="payment_city" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentPostcode" type="string" column="payment_postcode" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentCountry" type="string" column="payment_country" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentCountryId" type="integer" column="payment_country_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="paymentZone" type="string" column="payment_zone" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentZoneId" type="integer" column="payment_zone_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="paymentAddressFormat" type="text" column="payment_address_format" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentCustomField" type="text" column="payment_custom_field" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentMethod" type="string" column="payment_method" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentCode" type="string" column="payment_code" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingFirstname" type="string" column="shipping_firstname" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingLastname" type="string" column="shipping_lastname" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingCompany" type="string" column="shipping_company" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingAddress1" type="string" column="shipping_address_1" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingAddress2" type="string" column="shipping_address_2" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingCity" type="string" column="shipping_city" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingPostcode" type="string" column="shipping_postcode" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingCountry" type="string" column="shipping_country" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingCountryId" type="integer" column="shipping_country_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="shippingZone" type="string" column="shipping_zone" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingZoneId" type="integer" column="shipping_zone_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="shippingAddressFormat" type="text" column="shipping_address_format" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingCustomField" type="text" column="shipping_custom_field" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingMethod" type="string" column="shipping_method" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingCode" type="string" column="shipping_code" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="comment" type="text" column="comment" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="total" type="decimal" column="total" precision="15" scale="4" nullable="false">
+      <options>
+        <option name="default">0.0000</option>
+      </options>
+    </field>
+    <field name="commission" type="decimal" column="commission" precision="15" scale="4" nullable="false"/>
+    <field name="tracking" type="string" column="tracking" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="currencyCode" type="string" column="currency_code" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="currencyValue" type="decimal" column="currency_value" precision="15" scale="8" nullable="false">
+      <options>
+        <option name="default">1.00000000</option>
+      </options>
+    </field>
+    <field name="ip" type="string" column="ip" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="forwardedIp" type="string" column="forwarded_ip" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="userAgent" type="string" column="user_agent" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="acceptLanguage" type="string" column="accept_language" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dateAdded" type="datetime" column="date_added" nullable="false"/>
+    <field name="dateModified" type="datetime" column="date_modified" nullable="false"/>
+    <many-to-one field="marketing" target-entity="OcMarketing" fetch="LAZY">
+      <join-columns>
+        <join-column name="marketing_id" referenced-column-name="marketing_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="customerGroup" target-entity="OcCustomerGroup" fetch="LAZY">
+      <join-columns>
+        <join-column name="customer_group_id" referenced-column-name="customer_group_id"/>
+      </join-columns>
+    </many-to-one>
+    <!--<many-to-one field="orderStatus" target-entity="OcOrderStatus" fetch="LAZY">
+      <join-columns>
+        <join-column name="order_status_id" referenced-column-name="order_status_id"/>
+      </join-columns>
+    </many-to-one>-->
+    <many-to-one field="store" target-entity="OcStore" fetch="LAZY">
+      <join-columns>
+        <join-column name="store_id" referenced-column-name="store_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="affiliate" target-entity="OcAffiliate" fetch="LAZY">
+      <join-columns>
+        <join-column name="affiliate_id" referenced-column-name="affiliate_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="language" target-entity="OcLanguage" fetch="LAZY">
+      <join-columns>
+        <join-column name="language_id" referenced-column-name="language_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="customer" target-entity="OcCustomer" fetch="LAZY">
+      <join-columns>
+        <join-column name="customer_id" referenced-column-name="customer_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="currency" target-entity="OcCurrency" fetch="LAZY">
+      <join-columns>
+        <join-column name="currency_id" referenced-column-name="currency_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

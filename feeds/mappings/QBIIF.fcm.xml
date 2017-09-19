@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping>
+  
+  <entity name="OcProduct" table="oc2_product" foreign="Item">
+    <id name="productId" type="integer" column="product_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+	<field name="qbname" type="string" column="qbname" length="255" nullable="false" foreign="NAME">
+	  <options>
+		<option name="fixed"/>
+	  </options>
+	</field>
+	<field name="model" type="string" column="model" length="255" nullable="false" foreign="NAME">
+	  <options>
+		<option name="fixed"/>
+	  </options>
+	</field>
+	<field name="sku" type="string" column="sku" length="255" nullable="false">
+	  <options>
+		<option name="fixed"/>
+	  </options>
+	</field>
+	<field name="mpn" type="string" column="mpn" length="255" nullable="false">
+	  <options>
+		<option name="fixed"/>
+	  </options>
+	</field>
+	<field name="quantity" type="integer" column="quantity" nullable="true" foreign="QNTY">
+	</field>
+	<field name="price" type="decimal" column="price" nullable="true" foreign="PRICE">
+		<options>
+		  <option name="unsigned"/>
+		  <option name="default">0</option>
+		</options>
+	</field>
+	<field name="cost" type="decimal" column="cost" nullable="true" foreign="COST">
+	  <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+	</field>
+    <!-- Pseudo property - this will have to be parsed -->
+    <field name="taxClassId" type="integer" column="tax_class_id" nullable="false" foreign="SALESTAXCODE">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+	<!--field name="dateAdded" type="date" column="date_added" nullable="true" foreign="InvStartDate"></field>-->
+	<!--<field name="dateModified" type="date" column="date_modified" nullable="true" foreign="MetaData->DateModified"></field>-->
+	<!-- Refs foreign properties that are unmapped to OpenCart entities but that are stored in db -->
+	<ref name="name" type="string" column="name" foreign="NAME"></ref>
+	<!--<ref name="type" type="integer" column="type" foreign="Type"></ref>-->
+	<ref name="incomeAccountRef" type="integer" column="income_account_ref" foreign="ACCNT"></ref>
+	<ref name="expenseAccountRef" type="integer" column="expense_account_ref" foreign="COGSACCNT"></ref>
+	<ref name="assetAccountRef" type="integer" column="asset_account_ref" foreign="ASSETACCNT"></ref>
+	<!--<ref name="parentRef" type="integer" column="parent_ref_id" foreign="ParentRef"></ref>-->
+	<!--<ref name="salesTaxInclusive" type="integer" column="sales_tax_inclusive" foreign="SalesTaxInclusive"></ref>-->
+	<!--<ref name="salesTaxCode" type="integer" column="sales_tax_code" foreign="SALESTAXCODE"></ref>-->
+	<ref name="taxable" type="integer" column="taxable" foreign="TAXABLE"></ref>
+  </entity>
+  
+  <entity name="OcProductDescription" table="oc2_product_description" foreign="Item">
+	<indexes>
+	  <index name="name" columns="name"/>
+	</indexes>
+	<id name="productId" type="integer" column="product_id"/>
+	<id name="languageId" type="integer" column="language_id" nullable="true"/>
+	<!--<field name="name" type="string" column="name" length="255" nullable="false" foreign="Sku"></field>-->
+	<!--<field name="name" type="string" column="name" length="255" nullable="false" foreign="Name"></field>-->
+	<field name="metaDescription" type="text" column="meta_description" length="65535" nullable="false" foreign="DESC"></field>
+  </entity>
+
+</doctrine-mapping>

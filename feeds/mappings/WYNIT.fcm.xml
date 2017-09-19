@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping>
+  <entity name="OcProduct" table="oc2_product" foreign="data">
+    <id name="productId" type="integer" column="product_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+	<field name="model" type="string" column="model" length="255" nullable="false" foreign="stdpartnum">
+	  <options>
+		<option name="fixed"/>
+	  </options>
+	</field>
+	<field name="sku" type="string" column="sku" length="255" nullable="false">
+	  <options>
+		<option name="fixed"/>
+	  </options>
+	</field>
+	<field name="upc" type="string" column="upc" length="12" nullable="false" foreign="upc">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+	<field name="mpn" type="string" column="mpn" length="255" nullable="false" foreign="partnum">
+	  <options>
+		<option name="fixed"/>
+	  </options>
+	</field>
+	<field name="quantity" type="integer" column="quantity" nullable="true" foreign="qtyavailca"></field>
+	<field name="price" type="decimal" column="price" nullable="true" foreign="msrp">
+		<options>
+		  <option name="unsigned"/>
+		  <option name="default">0</option>
+		</options>
+	</field>
+
+	<field name="poCost" type="decimal" column="po_cost" nullable="true" foreign="cost">
+	  <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+	</field>
+	<field name="weight" type="decimal" column="weight" precision="15" scale="8" nullable="false" foreign="weight">
+      <options>
+        <option name="default">0.00000000</option>
+      </options>
+    </field>
+    <field name="length" type="decimal" column="length" precision="15" scale="8" nullable="false" foreign="length">
+      <options>
+        <option name="default">0.00000000</option>
+      </options>
+    </field>
+    <field name="width" type="decimal" column="width" precision="15" scale="8" nullable="false" foreign="width">
+      <options>
+        <option name="default">0.00000000</option>
+      </options>
+    </field>
+    <field name="height" type="decimal" column="height" precision="15" scale="8" nullable="false" foreign="height">
+      <options>
+        <option name="default">0.00000000</option>
+      </options>
+    </field>
+	<field name="image" type="string" column="image" length="255" nullable="false" foreign="ProductImageThumbnail">
+	  <options>
+		<option name="fixed"/>
+	  </options>
+	</field>
+  </entity>
+  
+  <entity name="OcProductDescription" table="oc2_product_description" foreign="data">
+	<indexes>
+	  <index name="name" columns="name"/>
+	</indexes>
+	<id name="productId" type="integer" column="product_id"/>
+	<id name="languageId" type="integer" column="language_id" nullable="true"/>
+
+	<field name="name" type="string" column="name" length="255" nullable="false" foreign="partdescript"></field>
+	<field name="description" type="text" column="description" length="65535" nullable="false" foreign="MarketingDescription"></field>
+	<!--<field name="metaDescription" type="text" column="meta_description" length="65535" nullable="false" foreign="partdescript"></field>-->
+  </entity>
+</doctrine-mapping>

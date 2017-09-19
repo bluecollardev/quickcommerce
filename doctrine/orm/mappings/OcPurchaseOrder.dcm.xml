@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OcPurchaseOrder" table="oc2_qctr_purchase_order">
+    <indexes>
+      <index name="IDX_1864E5A19395C3F3" columns="customer_id"/>
+      <index name="IDX_1864E5A1D7707B45" columns="purchase_order_status_id"/>
+    </indexes>
+    <id name="purchaseOrderId" type="integer" column="purchase_order_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+	<field name="transactionId" type="integer" column="transaction_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+	<field name="feedId" type="integer" column="feed_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+	<field name="ocEntityId" type="integer" column="oc_entity_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="purchaseOrderNo" type="integer" column="purchase_order_no" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="purchaseOrderPrefix" type="string" column="purchase_order_prefix" length="26" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billEmail" type="string" column="bill_email" length="32"></field>
+	<field name="billTelephone" type="string" column="bill_telephone" length="32"></field>
+	<field name="billFax" type="string" column="bill_fax" length="32"></field>
+	
+	<field name="firstname" type="string" column="firstname" length="32" nullable="false"></field>
+	<field name="lastname" type="string" column="lastname" length="32" nullable="false"></field>
+    
+	<field name="billAddrFirstname" type="string" column="bill_addr_firstname" length="32" nullable="false"></field>
+	<field name="billAddrLastname" type="string" column="bill_addr_lastname" length="32" nullable="false"></field>
+	<field name="billAddrCompany" type="string" column="bill_addr_company" length="32" nullable="false"></field>
+	
+	<field name="billAddrLine1" type="string" column="bill_addr_line1" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddrLine2" type="string" column="bill_addr_line2" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddrCity" type="string" column="bill_addr_city" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddrPostcode" type="string" column="bill_addr_postcode" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddrCountry" type="string" column="bill_addr_country" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddrCountryId" type="integer" column="bill_addr_country_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="billAddrZone" type="string" column="bill_addr_zone" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddrZoneId" type="integer" column="bill_addr_zone_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="paymentMethod" type="string" column="payment_method" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentCode" type="string" column="payment_code" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    
+	<field name="shipAddrFirstname" type="string" column="ship_addr_firstname" length="32" nullable="false"></field>
+	<field name="shipAddrLastname" type="string" column="ship_addr_lastname" length="32" nullable="false"></field>
+	<field name="shipAddrCompany" type="string" column="ship_addr_company" length="32" nullable="false"></field>
+	
+	<field name="shipAddrLine1" type="string" column="ship_addr_line1" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipAddrLine2" type="string" column="ship_addr_line2" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipAddrCity" type="string" column="ship_addr_city" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipAddrPostcode" type="string" column="ship_addr_postcode" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipAddrCountry" type="string" column="ship_addr_country" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipAddrCountryId" type="integer" column="ship_addr_country_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="shipAddrZone" type="string" column="ship_addr_zone" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipAddrZoneId" type="integer" column="ship_addr_zone_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="shippingMethod" type="string" column="shipping_method" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingCode" type="string" column="shipping_code" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="customerMemo" type="string" column="customer_memo" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="statementMemo" type="string" column="statement_memo" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="total" type="decimal" column="total" precision="15" scale="4" nullable="false">
+      <options>
+        <option name="default">0.0000</option>
+      </options>
+    </field>
+	<field name="balance" type="decimal" column="balance" precision="15" scale="4" nullable="false">
+      <options>
+        <option name="default">0.0000</option>
+      </options>
+    </field>
+	<field name="deposit" type="decimal" column="deposit" precision="15" scale="4" nullable="false">
+      <options>
+        <option name="default">0.0000</option>
+      </options>
+    </field>	
+
+    <field name="purchaseOrderDate" type="datetime" column="purchase_order_date" nullable="true"/>
+    <field name="dueDate" type="datetime" column="due_date" nullable="true"/>
+    <field name="shipDate" type="datetime" column="ship_date" nullable="true"/>
+    
+	<many-to-one field="purchaseOrderStatus" target-entity="OcPurchaseOrderStatus" fetch="LAZY">
+      <join-columns>
+        <join-column name="purchase_order_status_id" referenced-column-name="purchase_order_status_id"/>
+      </join-columns>
+    </many-to-one>
+	
+	<one-to-one field="transaction" target-entity="OcTransaction" fetch="LAZY">
+      <join-columns>
+        <join-column name="transaction_id" referenced-column-name="transaction_id" nullable="true" />
+      </join-columns>
+    </one-to-one>
+	
+	<one-to-many field="lines" target-entity="OcPurchaseOrderLine" mapped-by="purchaseOrder" fetch="LAZY">
+      <!--<join-columns>
+        <join-column name="purchase_order_id" referenced-column-name="purchase_order_id"/>
+      </join-columns>-->
+    </one-to-many>
+	
+    <many-to-one field="customer" target-entity="OcCustomer" fetch="LAZY">
+      <join-columns>
+        <join-column name="customer_id" referenced-column-name="customer_id"/>
+      </join-columns>
+    </many-to-one>
+    
+	<!--<many-to-one field="currency" target-entity="OcCurrency" fetch="LAZY">
+      <join-columns>
+        <join-column name="currency_id" referenced-column-name="currency_id"/>
+      </join-columns>
+    </many-to-one>-->
+  </entity>
+</doctrine-mapping>

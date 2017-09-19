@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OcCustomerIp" table="oc2_customer_ip">
+    <indexes>
+      <index name="ip" columns="ip"/>
+      <index name="IDX_14EC97979395C3F3" columns="customer_id"/>
+    </indexes>
+    <id name="customerIpId" type="integer" column="customer_ip_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="ip" type="string" column="ip" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dateAdded" type="datetime" column="date_added" nullable="false"/>
+    <many-to-one field="customer" target-entity="OcCustomer" fetch="LAZY">
+      <join-columns>
+        <join-column name="customer_id" referenced-column-name="customer_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

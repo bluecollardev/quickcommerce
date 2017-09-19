@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\OpenCart\MegamenuRow" table="oc2_megamenu_row">
+    <id name="rowId" type="integer" column="row_id"/>
+    <id name="menuId" type="integer" column="menu_id"/>
+    <field name="sortOrder" type="integer" column="sort_order" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="status" type="boolean" column="status" nullable="false"/>
+    <field name="height" type="decimal" column="height" precision="10" scale="0" nullable="true"/>
+    <field name="bgColor" type="string" column="bg_color" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="bgImage" type="string" column="bg_image" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

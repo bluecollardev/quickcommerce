@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\OpenCart\Maxmind" table="oc2_maxmind">
+    <id name="orderId" type="integer" column="order_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="customerId" type="integer" column="customer_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="countryMatch" type="string" column="country_match" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="countryCode" type="string" column="country_code" length="2" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="highRiskCountry" type="string" column="high_risk_country" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="distance" type="integer" column="distance" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="ipRegion" type="string" column="ip_region" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipCity" type="string" column="ip_city" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipLatitude" type="decimal" column="ip_latitude" precision="10" scale="6" nullable="false"/>
+    <field name="ipLongitude" type="decimal" column="ip_longitude" precision="10" scale="6" nullable="false"/>
+    <field name="ipIsp" type="string" column="ip_isp" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipOrg" type="string" column="ip_org" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipAsnum" type="integer" column="ip_asnum" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="ipUserType" type="string" column="ip_user_type" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipCountryConfidence" type="string" column="ip_country_confidence" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipRegionConfidence" type="string" column="ip_region_confidence" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipCityConfidence" type="string" column="ip_city_confidence" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipPostalConfidence" type="string" column="ip_postal_confidence" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipPostalCode" type="string" column="ip_postal_code" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipAccuracyRadius" type="integer" column="ip_accuracy_radius" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="ipNetSpeedCell" type="string" column="ip_net_speed_cell" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipMetroCode" type="integer" column="ip_metro_code" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="ipAreaCode" type="integer" column="ip_area_code" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="ipTimeZone" type="string" column="ip_time_zone" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipRegionName" type="string" column="ip_region_name" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipDomain" type="string" column="ip_domain" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipCountryName" type="string" column="ip_country_name" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipContinentCode" type="string" column="ip_continent_code" length="2" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ipCorporateProxy" type="string" column="ip_corporate_proxy" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="anonymousProxy" type="string" column="anonymous_proxy" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="proxyScore" type="integer" column="proxy_score" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="isTransProxy" type="string" column="is_trans_proxy" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="freeMail" type="string" column="free_mail" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="carderEmail" type="string" column="carder_email" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="highRiskUsername" type="string" column="high_risk_username" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="highRiskPassword" type="string" column="high_risk_password" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="binMatch" type="string" column="bin_match" length="10" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="binCountry" type="string" column="bin_country" length="2" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="binNameMatch" type="string" column="bin_name_match" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="binName" type="string" column="bin_name" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="binPhoneMatch" type="string" column="bin_phone_match" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="binPhone" type="string" column="bin_phone" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="customerPhoneInBillingLocation" type="string" column="customer_phone_in_billing_location" length="8" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipForward" type="string" column="ship_forward" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="cityPostalMatch" type="string" column="city_postal_match" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipCityPostalMatch" type="string" column="ship_city_postal_match" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="score" type="decimal" column="score" precision="10" scale="5" nullable="false"/>
+    <field name="explanation" type="text" column="explanation" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="riskScore" type="decimal" column="risk_score" precision="10" scale="5" nullable="false"/>
+    <field name="queriesRemaining" type="integer" column="queries_remaining" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="maxmindId" type="string" column="maxmind_id" length="8" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="error" type="text" column="error" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dateAdded" type="datetime" column="date_added" nullable="false"/>
+  </entity>
+</doctrine-mapping>

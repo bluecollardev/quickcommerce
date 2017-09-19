@@ -1,0 +1,497 @@
+# 1.To use URL Alias you need to be running apache with mod_rewrite enabled. 
+
+# 2. In your opencart directory rename htaccess.txt to .htaccess.
+
+# For any support issues please visit: http://www.opencart.com
+
+Options +FollowSymlinks
+
+# Prevent Directoy listing 
+Options -Indexes
+
+# Prevent Direct Access to files
+<FilesMatch "(?i)((\.tpl|\.ini|\.log|(?<!robots)\.txt))">
+ Order deny,allow
+ Deny from all
+</FilesMatch>
+
+# SEO URL Settings
+RewriteEngine On
+# If your opencart installation does not run on the main web folder make sure you folder it does run in ie. / becomes /shop/
+RewriteBase /quickcommerce/
+
+####################################### OPENCART RESTFUL API START #################################################
+#REST API get token
+RewriteRule ^api/rest/oauth2/token/?([a-zA-Z0-9_]+) index.php?route=feed/rest_api/gettoken&grant_type=$1  [L]
+
+#REST API get token
+RewriteRule ^api/rest/oauth2/token index.php?route=feed/rest_api/gettoken  [L]
+
+#REST API database tables checksum
+RewriteRule ^api/rest/checksums index.php?route=feed/rest_api/getchecksum  [L]
+####################################### OPENCART UTC OFFSET #################################################
+
+#REST API UTC and server time offset in seconds
+RewriteRule ^api/rest/utc_offset index.php?route=feed/rest_api/utc_offset  [L]
+####################################### OPENCART ORDER STATUSES #################################################
+
+#REST API List order statuses
+RewriteRule ^api/rest/order_statuses index.php?route=feed/rest_api/order_statuses  [L]
+#######################################PRODUCT######################################################################
+
+#REST API product custom search pager
+RewriteRule ^api/rest/products/custom_search/limit/?([0-9]+)/page/?([0-9]+) index.php?route=feed/rest_api/search&limit=$1&page=$2 [L]
+
+#REST API product custom search
+RewriteRule ^api/rest/products/custom_search index.php?route=feed/rest_api/search[L]
+
+RewriteRule ^api/rest/products/search/?([a-zA-Z0-9]+)/sort/?([a-zA-Z]+)/order/?([a-zA-Z]+) index.php?route=feed/rest_api/products&search=$1&sort=$2&order=$3 [L]
+RewriteRule ^api/rest/products/search/?([a-zA-Z0-9]+)/sort/?([a-zA-Z]+) index.php?route=feed/rest_api/products&search=$1&sort=$2 [L]
+
+RewriteRule ^api/rest/products/category/?([0-9]+)/sort/?([a-zA-Z]+)/order/?([a-zA-Z]+) index.php?route=feed/rest_api/products&category=$1&sort=$2&order=$3  [L]
+RewriteRule ^api/rest/products/category/?([0-9]+)/sort/?([a-zA-Z]+) index.php?route=feed/rest_api/products&category=$1&sort=$2  [L]
+
+RewriteRule ^api/rest/products/sort/?([a-zA-Z]+)/order/?([a-zA-Z]+) index.php?route=feed/rest_api/products&sort=$1&order=$2  [L]
+RewriteRule ^api/rest/products/sort/?([a-zA-Z]+) index.php?route=feed/rest_api/products&sort=$1  [L]
+
+#REST API add review
+RewriteRule ^api/rest/products/?([0-9]+)/review index.php?route=feed/rest_api/reviews&id=$1  [L]
+
+#REST API product search pager
+RewriteRule ^api/rest/products/search/?([a-zA-Z0-9]+)/limit/?([0-9]+)/page/?([0-9]+) index.php?route=feed/rest_api/products&search=$1&limit=$2&page=$3 [L]
+
+#REST API product search
+RewriteRule ^api/rest/products/search/?([a-zA-Z0-9]+) index.php?route=feed/rest_api/products&search=$1 [L]
+
+#REST API product pager
+RewriteRule ^api/rest/products/limit/?([0-9]+)/page/?([0-9]+) index.php?route=feed/rest_api/products&limit=$1&page=$2  [L]
+
+#REST API product per category pager
+RewriteRule ^api/rest/products/category/?([0-9]+)/limit/?([0-9]+)/page/?([0-9]+) index.php?route=feed/rest_api/products&category=$1&limit=$2&page=$3  [L]
+
+#REST API products per category
+RewriteRule ^api/rest/products/category/?([0-9]+) index.php?route=feed/rest_api/products&category=$1  [L]
+
+#REST API selected product
+RewriteRule ^api/rest/products/?([0-9]+) index.php?route=feed/rest_api/products&id=$1  [L]
+
+#REST API products
+RewriteRule ^api/rest/products index.php?route=feed/rest_api/products  [L]
+
+#REST API get featured products limit
+RewriteRule ^api/rest/featured/limit/?([0-9]+) index.php?route=feed/rest_api/featured&limit=$1  [L]
+
+#REST API get featured products
+RewriteRule ^api/rest/featured index.php?route=feed/rest_api/featured  [L]
+
+#REST API get product classes
+RewriteRule ^api/rest/product_classes index.php?route=feed/rest_api/productclasses  [L]
+
+#######################################CATEGORY####################################################################
+#REST API categories filter parent and level
+RewriteRule ^api/rest/categories/parent/?([0-9]+)/level/?([0-9]+) index.php?route=feed/rest_api/categories&parent=$1&level=$2  [L]
+
+#REST API categories filter level
+RewriteRule ^api/rest/categories/level/?([0-9]+) index.php?route=feed/rest_api/categories&level=$1  [L]
+
+#REST API categories filter parent
+RewriteRule ^api/rest/categories/parent/?([0-9]+) index.php?route=feed/rest_api/categories&parent=$1  [L]
+
+#REST API selected category
+RewriteRule ^api/rest/categories/?([0-9]+) index.php?route=feed/rest_api/categories&id=$1  [L]
+
+#REST API categories
+RewriteRule ^api/rest/categories index.php?route=feed/rest_api/categories [L]
+
+#######################################MANUFACTURER#################################################################
+
+#REST API selected manufacturer
+RewriteRule ^api/rest/manufacturers/?([0-9]+) index.php?route=feed/rest_api/manufacturers&id=$1  [L]
+
+#REST API manufacturers
+RewriteRule ^api/rest/manufacturers index.php?route=feed/rest_api/manufacturers  [L]
+
+#######################################ORDERS######################################################################
+#REST API order history
+RewriteRule ^api/rest/orderhistory/?([0-9]+) index.php?route=feed/rest_api/orderhistory&id=$1  [L]
+
+#REST API selected orders
+RewriteRule ^api/rest/orders/?([0-9]+) index.php?route=feed/rest_api/orders&id=$1  [L]
+
+#REST API Orders with details filter by date_added range
+RewriteRule ^api/rest/orders/details/added_from/([^/]+)/added_to/([^/]+)/?$ index.php?route=feed/rest_api/listorderswithdetails&filter_date_added_from=$1&filter_date_added_to=$2 [L]
+
+#REST API Orders with details filter by date_added from till now
+RewriteRule ^api/rest/orders/details/added_from/([^/]+)/?$ index.php?route=feed/rest_api/listorderswithdetails&filter_date_added_from=$1 [L]
+
+#REST API Orders with details filter by date_added on
+RewriteRule ^api/rest/orders/details/added_on/([^/]+)/?$ index.php?route=feed/rest_api/listorderswithdetails&filter_date_added_on=$1 [L]
+
+#REST API Orders with details filter by date_modified range
+RewriteRule ^api/rest/orders/details/modified_from/([^/]+)/modified_to/([^/]+)/?$ index.php?route=feed/rest_api/listorderswithdetails&filter_date_modified_from=$1&filter_date_modified_to=$2 [L]
+
+#REST API Orders with details filter by date_modified from till now
+RewriteRule ^api/rest/orders/details/modified_from/([^/]+)/?$ index.php?route=feed/rest_api/listorderswithdetails&filter_date_modified_from=$1 [L]
+
+#REST API Orders with details filter by date_modified on
+RewriteRule ^api/rest/orders/details/modified_on/([^/]+)/?$ index.php?route=feed/rest_api/listorderswithdetails&filter_date_modified_on=$1 [L]
+
+#REST API Orders with details filter by status
+RewriteRule ^api/rest/orders/details/status/([0-9,?:,]+) index.php?route=feed/rest_api/listorderswithdetails&filter_order_status_id=$1 [L]
+
+#REST API Orders with details
+RewriteRule ^api/rest/orders/details index.php?route=feed/rest_api/listorderswithdetails  [L]
+
+#REST API update order status
+RewriteRule ^api/rest/order_status/?([0-9]+) index.php?route=feed/rest_api/orderstatus&id=$1  [L]
+
+#REST API update orders
+RewriteRule ^api/rest/orders/?([0-9]+) index.php?route=feed/rest_api/orders&id=$1  [L]
+
+#REST API delete orders
+RewriteRule ^api/rest/orders/?([0-9]+) index.php?route=feed/rest_api/orders&id=$1  [L]
+
+#REST API Orders filtered by user
+RewriteRule ^api/rest/orders/user/?([0-9]+) index.php?route=feed/rest_api/userorders&user=$1  [L]
+
+#REST API orders
+RewriteRule ^api/rest/orders index.php?route=feed/rest_api/orders  [L]
+
+#######################################CUSTOMERS##################################################################
+
+#REST API selected customers
+RewriteRule ^api/rest/customers/?([0-9]+) index.php?route=feed/rest_api/customers&id=$1  [L]
+
+#REST API customers
+RewriteRule ^api/rest/customers index.php?route=feed/rest_api/customers  [L]
+
+#######################################LANGUAGES#################################################################
+
+#REST API selected language
+RewriteRule ^api/rest/languages/?([0-9]+) index.php?route=feed/rest_api/languages&id=$1  [L]
+
+#REST API languages
+RewriteRule ^api/rest/languages index.php?route=feed/rest_api/languages [L]
+
+##############################################STORE###############################################################
+
+#REST API selected store
+RewriteRule ^api/rest/stores/?([0-9]+) index.php?route=feed/rest_api/stores&id=$1  [L]
+
+#REST API stores
+RewriteRule ^api/rest/stores index.php?route=feed/rest_api/stores [L]
+
+#######################################COUNTRY###################################################################
+
+#REST API selected country
+RewriteRule ^api/rest/countries/?([0-9]+) index.php?route=feed/rest_api/countries&id=$1  [L]
+
+#REST API countries
+RewriteRule ^api/rest/countries index.php?route=feed/rest_api/countries [L]
+
+
+#######################################SESSION#####################################################################
+
+#REST API get session
+RewriteRule ^api/rest/session index.php?route=feed/rest_api/session  [L]
+
+#######################################CART####################################################
+
+#REST API cart bulk functions
+RewriteRule ^api/rest/cart_bulk index.php?route=rest/cart/bulkcart  [L]
+
+#REST API empty cart
+RewriteRule ^api/rest/cart/empty index.php?route=rest/cart/emptycart  [L]
+
+#REST API cart
+RewriteRule ^api/rest/cart index.php?route=rest/cart/cart  [L]
+#######################################CUSTOMERS####################################################
+
+#REST API registration
+RewriteRule ^api/rest/register index.php?route=rest/register/register  [L]
+
+#REST API login
+RewriteRule ^api/rest/login index.php?route=rest/login/login  [L]
+
+#REST API logout
+RewriteRule ^api/rest/logout index.php?route=rest/logout/logout  [L]
+
+
+#######################################VOUCHER####################################################
+
+#REST API add voucher
+RewriteRule ^api/rest/voucher index.php?route=rest/cart/voucher  [L]
+
+#######################################COUPON####################################################
+
+#REST API add coupon
+RewriteRule ^api/rest/coupon index.php?route=rest/cart/coupon  [L]
+
+#######################################REWARD#####################################################
+
+#REST API add reward
+RewriteRule ^api/rest/reward index.php?route=rest/cart/reward  [L]
+
+
+#######################################GUEST SHIPPING ####################################################
+
+#REST API payment methods
+RewriteRule ^api/rest/guestshipping index.php?route=rest/guest_shipping/guestshipping  [L]
+
+#######################################GUEST####################################################
+
+#REST API guest
+RewriteRule ^api/rest/guest index.php?route=rest/guest/guest  [L]
+
+
+#######################################PAYMENT METHOD####################################################
+
+#REST API payment methods
+RewriteRule ^api/rest/paymentmethods index.php?route=rest/payment_method/payments  [L]
+
+#######################################PAYMENT ADDRESS####################################################
+
+#REST API payment methods
+RewriteRule ^api/rest/paymentaddress index.php?route=rest/payment_address/paymentaddress  [L]
+
+#######################################SHIPPING ADDRESS####################################################
+
+#REST API shipping methods
+RewriteRule ^api/rest/shippingaddress index.php?route=rest/shipping_address/shippingaddress  [L]
+
+#######################################SHIPPING METHOD####################################################
+
+#REST API payment methods
+RewriteRule ^api/rest/shippingmethods index.php?route=rest/shipping_method/shippingmethods  [L]
+
+#######################################ZONE####################################################
+
+#REST API get zones
+RewriteRule ^api/rest/zone/?([0-9]+) index.php?route=rest/guest/zone&country_id=$1 [L]
+
+#######################################CHECKOUT CONFIRM############################################
+
+#REST API confirm and save order
+RewriteRule ^api/rest/confirm index.php?route=rest/confirm/confirm  [L]
+
+#######################################CHECKOUT CONFIRM SIMPLE############################################
+
+#REST API confirm and save order
+RewriteRule ^api/rest/simpleconfirm index.php?route=rest/simple_confirm/confirm  [L]
+
+#######################################CHECKOUT USERDATA TEST ############################################
+
+#REST API check user data
+RewriteRule ^api/rest/checkuser index.php?route=rest/login/checkuser  [L]
+
+####################################### CUSTOMER ORDERS ####################################################
+
+
+#REST API customer orders details or reorder
+RewriteRule ^api/rest/customerorders/?([0-9]+) index.php?route=rest/order/orders&id=$1  [L]
+
+#REST API customer orders
+RewriteRule ^api/rest/customerorders index.php?route=rest/order/orders  [L]
+#######################################CHANGE PASSWORD####################################################
+
+RewriteRule ^api/rest/account/address/?([0-9]+) index.php?route=rest/account/address&id=$1  [L]
+
+#REST API address method
+RewriteRule ^api/rest/account/address index.php?route=rest/account/address  [L]
+
+#REST API change password method
+RewriteRule ^api/rest/account/password index.php?route=rest/account/password  [L]
+#######################################GUEST ACCOUNT ####################################################
+
+#REST API account methods
+RewriteRule ^api/rest/account index.php?route=rest/account/account  [L]
+
+#REST API account custom fields
+RewriteRule ^api/rest/customfield index.php?route=rest/account/customfield  [L]
+
+#######################################WISHLIST####################################################
+#REST API add product to wishlist or delete from wishlist
+RewriteRule ^api/rest/wishlist/?([0-9]+) index.php?route=rest/wishlist/wishlist&id=$1  [L]
+
+#REST API wishlist
+RewriteRule ^api/rest/wishlist index.php?route=rest/wishlist/wishlist  [L]
+
+#######################################START PAYMENT############################################
+#REST API START PAYMENT PROCESS
+
+RewriteRule ^api/rest/pay/access_token/?([a-zA-Z0-9]+) index.php?route=rest/confirm/confirm&page=pay&access_token=$1  [L]
+RewriteRule ^api/rest/pay index.php?route=rest/confirm/confirm&page=pay  [L]
+
+#######################################OPENCART RESTFUL API V2 END####################################
+
+
+####################################### OPENCART REST ADMIN API START #######################################
+
+#REST API database tables checksum
+RewriteRule ^api/rest_admin/checksums index.php?route=rest/helpers/getchecksum  [L]
+
+#REST API UTC and server time offset in seconds
+RewriteRule ^api/rest_admin/utc_offset index.php?route=rest/helpers/utc_offset  [L]
+
+#REST API get product classes
+RewriteRule ^api/rest_admin/init index.php?route=rest/helpers/productclasses  [L]
+
+#REST API selected country
+RewriteRule ^api/rest_admin/countries/?([0-9]+) index.php?route=rest/helpers/countries&id=$1  [L]
+
+#REST API countries
+RewriteRule ^api/rest_admin/countries index.php?route=rest/helpers/countries [L]
+
+####################################### PRODUCT #######################################
+
+RewriteRule ^api/rest_admin/bulk_products index.php?route=rest/product_admin/bulkproducts  [L]
+RewriteRule ^api/rest_admin/products/?([0-9]+)/images/other index.php?route=rest/product_admin/productimages&id=$1&other=1  [L]
+RewriteRule ^api/rest_admin/products/?([0-9]+)/images index.php?route=rest/product_admin/productimages&id=$1  [L]
+RewriteRule ^api/rest_admin/products/search/?([a-zA-Z0-9]+)/sort/?([a-zA-Z]+)/order/?([a-zA-Z]+) index.php?route=rest/product_admin/products&search=$1&sort=$2&order=$3 [L]
+RewriteRule ^api/rest_admin/products/search/?([a-zA-Z0-9]+)/sort/?([a-zA-Z]+) index.php?route=rest/product_admin/products&search=$1&sort=$2 [L]
+RewriteRule ^api/rest_admin/products/category/?([0-9]+)/sort/?([a-zA-Z]+)/order/?([a-zA-Z]+) index.php?route=rest/product_admin/products&category=$1&sort=$2&order=$3  [L]
+RewriteRule ^api/rest_admin/products/category/?([0-9]+)/sort/?([a-zA-Z]+) index.php?route=rest/product_admin/products&category=$1&sort=$2  [L]
+RewriteRule ^api/rest_admin/products/sort/?([a-zA-Z]+)/order/?([a-zA-Z]+) index.php?route=rest/product_admin/products&sort=$1&order=$2  [L]
+RewriteRule ^api/rest_admin/products/sort/?([a-zA-Z]+) index.php?route=rest/product_admin/products&sort=$1  [L]
+RewriteRule ^api/rest_admin/products/?([0-9]+)/review index.php?route=feed/rest_api/reviews&id=$1  [L]
+RewriteRule ^api/rest_admin/products/search/?([a-zA-Z0-9]+)/limit/?([0-9]+)/page/?([0-9]+) index.php?route=rest/product_admin/products&search=$1&limit=$2&page=$3 [L]
+RewriteRule ^api/rest_admin/products/search/?([a-zA-Z0-9]+) index.php?route=rest/product_admin/products&search=$1 [L]
+RewriteRule ^api/rest_admin/products/limit/?([0-9]+)/page/?([0-9]+) index.php?route=rest/product_admin/products&limit=$1&page=$2  [L]
+RewriteRule ^api/rest_admin/products/category/?([0-9]+)/limit/?([0-9]+)/page/?([0-9]+) index.php?route=rest/product_admin/products&category=$1&limit=$2&page=$3  [L]
+RewriteRule ^api/rest_admin/products/category/?([0-9]+) index.php?route=rest/product_admin/products&category=$1  [L]
+RewriteRule ^api/rest_admin/products/quantity index.php?route=rest/product_admin/productquantity  [L]
+RewriteRule ^api/rest_admin/products/?([0-9]+) index.php?route=rest/product_admin/products&id=$1  [L]
+RewriteRule ^api/rest_admin/products index.php?route=rest/product_admin/products  [L]
+RewriteRule ^api/rest_admin/featured/limit/?([0-9]+) index.php?route=rest/product_admin/featured&limit=$1  [L]
+RewriteRule ^api/rest_admin/featured index.php?route=rest/product_admin/featured  [L]
+
+####################################### CATEGORY #######################################
+
+RewriteRule ^api/rest_admin/products/category/?([0-9]+)/sort/?([a-zA-Z]+) index.php?route=rest/product_admin/products&category=$1&sort=$2  [L]
+RewriteRule ^api/rest_admin/products/category/?([0-9]+)/sort/?([a-zA-Z]+)/order/?([a-zA-Z]+) index.php?route=rest/product_admin/products&category=$1&sort=$2&order=$3  [L]
+RewriteRule ^api/rest_admin/categories/?([0-9]+)/images index.php?route=rest/category_admin/categoryimages&id=$1  [L]
+RewriteRule ^api/rest_admin/categories/parent/?([0-9]+)/level/?([0-9]+) index.php?route=rest/category_admin/category&parent=$1&level=$2  [L]
+RewriteRule ^api/rest_admin/categories/level/?([0-9]+) index.php?route=rest/category_admin/category&level=$1  [L]
+RewriteRule ^api/rest_admin/categories/parent/?([0-9]+) index.php?route=rest/category_admin/category&parent=$1  [L]
+RewriteRule ^api/rest_admin/categories/?([0-9]+) index.php?route=rest/category_admin/category&id=$1  [L]
+RewriteRule ^api/rest_admin/categories index.php?route=rest/category_admin/category [L]
+
+###################################### MANUFACTURER #######################################
+RewriteRule ^api/rest_admin/manufacturers/limit/?([0-9]+)/page/?([0-9]+) index.php?route=rest/manufacturer_admin/manufacturer&limit=$1&page=$2  [L]
+RewriteRule ^api/rest_admin/manufacturers/?([0-9]+)/images index.php?route=rest/manufacturer_admin/manufacturerimages&id=$1  [L]
+RewriteRule ^api/rest_admin/manufacturers/?([0-9]+) index.php?route=rest/manufacturer_admin/manufacturer&id=$1  [L]
+RewriteRule ^api/rest_admin/manufacturers index.php?route=rest/manufacturer_admin/manufacturer  [L]
+
+###################################### ORDERS #######################################
+
+RewriteRule ^api/rest_admin/orderhistory/?([0-9]+) index.php?route=rest/order_admin/orderhistory&id=$1  [L]
+RewriteRule ^api/rest_admin/orders/details/added_from/([^/]+)/added_to/([^/]+)/?$ index.php?route=rest/order_admin/listorderswithdetails&filter_date_added_from=$1&filter_date_added_to=$2 [L]
+RewriteRule ^api/rest_admin/orders/details/added_from/([^/]+)/?$ index.php?route=rest/order_admin/listorderswithdetails&filter_date_added_from=$1 [L]
+RewriteRule ^api/rest_admin/orders/details/added_on/([^/]+)/?$ index.php?route=rest/order_admin/listorderswithdetails&filter_date_added_on=$1 [L]
+RewriteRule ^api/rest_admin/orders/details/modified_from/([^/]+)/modified_to/([^/]+)/?$ index.php?route=rest/order_admin/listorderswithdetails&filter_date_modified_from=$1&filter_date_modified_to=$2 [L]
+RewriteRule ^api/rest_admin/orders/details/modified_from/([^/]+)/?$ index.php?route=rest/order_admin/listorderswithdetails&filter_date_modified_from=$1 [L]
+RewriteRule ^api/rest_admin/orders/details/modified_on/([^/]+)/?$ index.php?route=rest/order_admin/listorderswithdetails&filter_date_modified_on=$1 [L]
+RewriteRule ^api/rest_admin/orders/details/status/([0-9,?:,]+) index.php?route=rest/order_admin/listorderswithdetails&filter_order_status_id=$1 [L]
+RewriteRule ^api/rest_admin/order_status/?([0-9]+) index.php?route=rest/order_admin/orderstatus&id=$1  [L]
+RewriteRule ^api/rest_admin/orders/details index.php?route=rest/order_admin/listorderswithdetails  [L]
+RewriteRule ^api/rest_admin/orders/?([0-9]+) index.php?route=rest/order_admin/orders&id=$1  [L]
+RewriteRule ^api/rest_admin/orders/user/?([0-9]+) index.php?route=rest/order_admin/userorders&user=$1  [L]
+RewriteRule ^api/rest_admin/orders index.php?route=rest/order_admin/orders  [L]
+RewriteRule ^api/rest_admin/orderadmin index.php?route=rest/order_admin/order  [L]
+
+####################################### ATTRIBUTE GROUP #######################################
+RewriteRule ^api/rest_admin/attributegroups/?([0-9]+) index.php?route=rest/attribute_group_admin/attributegroup&id=$1  [L]
+
+RewriteRule ^api/rest_admin/attributegroups/limit/?([0-9]+)/page/?([0-9]+) index.php?route=rest/attribute_group_admin/attributegroup&limit=$1&page=$2  [L]
+
+RewriteRule ^api/rest_admin/attributegroups index.php?route=rest/attribute_group_admin/attributegroup  [L]
+
+####################################### ATTRIBUTE #######################################
+
+RewriteRule ^api/rest_admin/attributes/?([0-9]+) index.php?route=rest/attribute_admin/attribute&id=$1  [L]
+RewriteRule ^api/rest_admin/attributes/group/?([0-9]+)limit/?([0-9]+)/page/?([0-9]+) index.php?route=rest/attribute_admin/attribute&group=$1&limit=$2&page=$3  [L]
+RewriteRule ^api/rest_admin/attributes/limit/?([0-9]+)/page/?([0-9]+) index.php?route=rest/attribute_admin/attribute&limit=$1&page=$2  [L]
+RewriteRule ^api/rest_admin/attributes index.php?route=rest/attribute_admin/attribute  [L]
+
+###################################### OPTIONS #######################################
+
+RewriteRule ^api/rest_admin/product_options/?([0-9]+)/images index.php?route=rest/option_admin/optionimages&id=$1  [L]
+RewriteRule ^api/rest_admin/product_options/?([0-9]+) index.php?route=rest/option_admin/option&id=$1  [L]
+RewriteRule ^api/rest_admin/product_options/limit/?([0-9]+)/page/?([0-9]+) index.php?route=rest/option_admin/option&limit=$1&page=$2  [L]
+RewriteRule ^api/rest_admin/product_options index.php?route=rest/option_admin/option  [L]
+
+##################################### CUSTOMER GROUPS #######################################
+
+RewriteRule ^api/rest_admin/customergroups/?([0-9]+) index.php?route=rest/customer_group_admin/customergroup&id=$1  [L]
+RewriteRule ^api/rest_admin/customergroups/limit/?([0-9]+)/page/?([0-9]+) index.php?route=rest/customer_group_admin/customergroup&limit=$1&page=$2  [L]
+RewriteRule ^api/rest_admin/customergroups index.php?route=rest/customer_group_admin/customergroup  [L]
+
+#################################### CUSTOMER #######################################
+RewriteRule ^api/rest_admin/customers/added_from/([^/]+)/added_to/([^/]+)/?$ index.php?route=rest/customer_admin/customers&filter_date_added_from=$1&filter_date_added_to=$2 [L]
+RewriteRule ^api/rest_admin/customers/added_from/([^/]+)/?$ index.php?route=rest/customer_admin/customers&filter_date_added_from=$1 [L]
+RewriteRule ^api/rest_admin/customers/added_on/([^/]+)/?$ index.php?route=rest/customer_admin/customers&filter_date_added_on=$1 [L]
+
+RewriteRule ^api/rest_admin/customers/?([0-9]+) index.php?route=rest/customer_admin/customers&id=$1  [L]
+RewriteRule ^api/rest_admin/customers/limit/?([0-9]+)/page/?([0-9]+) index.php?route=rest/customer_admin/customers&limit=$1&page=$2  [L]
+RewriteRule ^api/rest_admin/customers index.php?route=rest/customer_admin/customers  [L]
+
+####################################### CUSTOM FIELD #######################################
+
+RewriteRule ^api/rest_admin/customfields/limit/?([0-9]+)/page/?([0-9]+) index.php?route=rest/custom_field_admin/customfield&limit=$1&page=$2  [L]
+
+#################################### SHIPPING METHODS #######################################
+
+RewriteRule ^api/rest_admin/shippingmethods index.php?route=rest/shipping_method_admin/shippingmethods  [L]
+
+#################################### PAYMENT METHODS #######################################
+
+RewriteRule ^api/rest_admin/paymentmethods index.php?route=rest/payment_method_admin/paymentmethods  [L]
+
+###################################### COUPONS #######################################
+
+RewriteRule ^api/rest_admin/coupons/?([0-9]+) index.php?route=rest/coupon_admin/coupon&id=$1  [L]
+RewriteRule ^api/rest_admin/coupons/limit/?([0-9]+)/page/?([0-9]+) index.php?route=rest/coupon_admin/coupon&limit=$1&page=$2  [L]
+RewriteRule ^api/rest_admin/coupons index.php?route=rest/coupon_admin/coupon  [L]
+
+################################# OPENCART REST ADMIN API END ###############################
+
+RewriteRule ^catalog/view/javascript/bossthemes/font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0 ^vendor/opencart/upload/catalog/view/javascript/bossthemes/font-awesome/fonts/fontawesome-webfont.woff?v=4.2.0
+
+RewriteRule ^sitemap.xml$ index.php?route=feed/google_sitemap [L]
+RewriteRule ^googlebase.xml$ index.php?route=feed/google_base [L]
+RewriteRule ^system/download/(.*) /index.php?route=error/not_found [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
+RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
+
+# If we are requesting an OpenCart file or directory redirect to appropriate folder
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} .*\.(ico|gif|jpg|jpeg|png|js|css|ttf|woff)
+RewriteRule ^([catalog|system|image].*)$ vendor/opencart/upload/$1 [L,NC]
+
+### Additional Settings that may need to be enabled for some servers 
+### Uncomment the commands by removing the # sign in front of it.
+### If you get an "Internal Server Error 500" after enabling any of the following settings, restore the # as this means your host doesn't allow that.
+
+# 1. If your cart only allows you to add one item at a time, it is possible register_globals is on. This may work to disable it:
+# php_flag register_globals off
+
+# 2. If your cart has magic quotes enabled, This may work to disable it:
+# php_flag magic_quotes_gpc Off
+
+# 3. Set max upload file size. Most hosts will limit this and not allow it to be overridden but you can try
+# php_value upload_max_filesize 999M
+
+# 4. set max post size. uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+# php_value post_max_size 999M
+
+# 5. set max time script can take. uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+# php_value max_execution_time 200
+
+# 6. set max time for input to be recieved. Uncomment this line if you have a lot of product options or are getting errors where forms are not saving all fields
+# php_value max_input_time 200
+
+# 7. disable open_basedir limitations
+# php_admin_value open_basedir none

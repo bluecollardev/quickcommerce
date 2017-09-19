@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\OpenCart\EbayOrder" table="oc2_ebay_order">
+    <indexes>
+      <index name="order_id" columns="order_id"/>
+      <index name="smp_id" columns="smp_id"/>
+      <index name="parent_ebay_order_id" columns="parent_ebay_order_id"/>
+    </indexes>
+    <id name="ebayOrderId" type="integer" column="ebay_order_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="parentEbayOrderId" type="integer" column="parent_ebay_order_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="orderId" type="integer" column="order_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="smpId" type="integer" column="smp_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="trackingNo" type="string" column="tracking_no" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="carrierId" type="string" column="carrier_id" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

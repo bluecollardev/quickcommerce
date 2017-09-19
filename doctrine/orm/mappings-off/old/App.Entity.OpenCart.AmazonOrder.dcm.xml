@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\OpenCart\AmazonOrder" table="oc2_amazon_order">
+    <id name="orderId" type="integer" column="order_id"/>
+    <id name="amazonOrderId" type="string" column="amazon_order_id" length="19"/>
+    <field name="courierId" type="string" column="courier_id" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="courierOther" type="boolean" column="courier_other" nullable="false"/>
+    <field name="trackingNo" type="string" column="tracking_no" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

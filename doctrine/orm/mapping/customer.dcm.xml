@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <entity name="Doctrine\Tests\ORM\Mapping\Customer" table="oc2_customer">
+        <id name="customer_id" type="integer" column="customer_id">
+            <generator strategy="AUTO"/>
+            <sequence-generator sequence-name="tablename_seq" allocation-size="100" initial-value="1" />
+        </id>
+
+        <field name="customer_id" column="customer_id" />
+		<field name="customer_group_id" column="customer_group_id" />
+		<field name="store_id" column="store_id" />
+		<field name="firstname" column="firstname" />
+		<field name="lastname" column="lastname" />
+		<field name="email" column="email" />
+		<field name="telephone" column="telephone" />
+		<field name="fax" column="fax" />
+		<field name="password" column="password" />
+		<field name="salt" column="salt" />
+		<field name="cart" column="cart" />
+		<field name="wishlist" column="wishlist" />
+		<field name="newsletter" column="newsletter" />
+		<field name="address_id" column="address_id" />
+		<field name="custom_field" column="custom_field" />
+		<field name="ip" column="ip" />
+		<field name="status" column="status" />
+		<field name="approved" column="approved" />
+		<field name="safe" column="safe" />
+		<field name="token" column="token" />
+		<field name="date_added" column="date_added" />
+		
+    </entity>
+
+</doctrine-mapping>

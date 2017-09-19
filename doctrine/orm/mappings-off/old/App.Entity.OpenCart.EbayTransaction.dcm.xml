@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\OpenCart\EbayTransaction" table="oc2_ebay_transaction">
+    <indexes>
+      <index name="product_id" columns="product_id"/>
+      <index name="order_id" columns="order_id"/>
+      <index name="smp_id" columns="smp_id"/>
+    </indexes>
+    <id name="ebayTransactionId" type="integer" column="ebay_transaction_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="orderId" type="integer" column="order_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="productId" type="integer" column="product_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="sku" type="string" column="sku" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="txnId" type="string" column="txn_id" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="itemId" type="string" column="item_id" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="containingOrderId" type="string" column="containing_order_id" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="orderLineId" type="string" column="order_line_id" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="qty" type="integer" column="qty" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="smpId" type="integer" column="smp_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="created" type="datetime" column="created" nullable="false"/>
+    <field name="modified" type="datetime" column="modified" nullable="false"/>
+  </entity>
+</doctrine-mapping>

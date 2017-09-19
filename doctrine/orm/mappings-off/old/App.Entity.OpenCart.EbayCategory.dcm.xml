@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\OpenCart\EbayCategory" table="oc2_ebay_category">
+    <id name="ebayCategoryId" type="integer" column="ebay_category_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="categoryid" type="integer" column="CategoryID" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="categoryparentid" type="integer" column="CategoryParentID" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="categorylevel" type="smallint" column="CategoryLevel" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="categoryname" type="string" column="CategoryName" length="100" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="bestofferenabled" type="boolean" column="BestOfferEnabled" nullable="false"/>
+    <field name="autopayenabled" type="boolean" column="AutoPayEnabled" nullable="false"/>
+  </entity>
+</doctrine-mapping>

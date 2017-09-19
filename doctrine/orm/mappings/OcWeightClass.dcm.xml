@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OcWeightClass" table="oc2_weight_class">
+    <id name="weightClassId" type="integer" column="weight_class_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="value" type="decimal" column="value" precision="15" scale="8" nullable="false">
+      <options>
+        <option name="default">0.00000000</option>
+      </options>
+    </field>
+    <many-to-many field="language" target-entity="OcLanguage" inversed-by="weightClass" fetch="LAZY">
+      <join-table name="oc2_weight_class_description">
+        <join-columns>
+          <join-column name="weight_class_id" referenced-column-name="weight_class_id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="language_id" referenced-column-name="language_id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

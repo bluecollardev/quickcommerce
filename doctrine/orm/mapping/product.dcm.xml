@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <entity name="Doctrine\Tests\ORM\Mapping\Product" table="oc2_product">
+        <id name="product_id" type="integer" column="product_id">
+            <generator strategy="AUTO"/>
+            <sequence-generator sequence-name="tablename_seq" allocation-size="100" initial-value="1" />
+        </id>
+
+        <field name="product_id" column="product_id" />
+		<field name="model" column="model" type="string" length="64" />
+		<field name="sku" column="sku" type="string" length="64" />
+		<field name="upc" column="upc" type="string" length="12" />
+		<field name="ean" column="ean" type="string" length="14" />
+		<field name="jan" column="jan" type="string" length="13" />
+		<field name="isbn" column="isbn" type="string" length="17" />
+		<field name="mpn" column="mpn" type="string" length="64" />
+		<field name="location" column="location" type="string" length="128" />
+		<field name="quantity" column="quantity" />
+		<field name="stock_status_id" column="stock_status_id" />
+		<field name="image" column="image" type="string" length="255" />
+		<field name="manufacturer_id" column="manufacturer_id" type="integer" />
+		<field name="shipping" column="shipping" />
+		<field name="price" column="price" />
+		<field name="points" column="points" />
+		<field name="tax_class_id" column="tax_class_id" />
+		<field name="date_available" column="date_available" />
+		<field name="weight" column="weight" />
+		<field name="weight_class_id" column="weight_class_id" />
+		<field name="length" column="length" />
+		<field name="width" column="width" />
+		<field name="height" column="height" />
+		<field name="length_class_id" column="length_class_id" />
+		<field name="subtract" column="subtract" />
+		<field name="minimum" column="minimum" />
+		<field name="sort_order" column="sort_order" />
+		<field name="status" column="status" />
+		<field name="viewed" column="viewed" />
+		<field name="date_added" column="date_added" />
+		<field name="date_modified" column="date_modified" />
+		
+    </entity>
+
+</doctrine-mapping>

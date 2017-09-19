@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OcCustomField" table="oc2_custom_field">
+    <id name="customFieldId" type="integer" column="custom_field_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="type" type="string" column="type" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="value" type="text" column="value" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="location" type="string" column="location" length="7" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="status" type="boolean" column="status" nullable="false"/>
+    <field name="sortOrder" type="integer" column="sort_order" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-many field="language" target-entity="OcLanguage" inversed-by="customField" fetch="LAZY">
+      <join-table name="oc2_custom_field_description">
+        <join-columns>
+          <join-column name="custom_field_id" referenced-column-name="custom_field_id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="language_id" referenced-column-name="language_id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="customerGroup" target-entity="OcCustomerGroup" inversed-by="customField" fetch="LAZY">
+      <join-table name="oc2_custom_field_customer_group">
+        <join-columns>
+          <join-column name="custom_field_id" referenced-column-name="custom_field_id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="customer_group_id" referenced-column-name="customer_group_id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <entity name="Doctrine\Tests\ORM\Mapping\User" table="oc2_user">
+        <id name="user_id" type="integer" column="user_id">
+            <generator strategy="AUTO"/>
+            <sequence-generator sequence-name="tablename_seq" allocation-size="100" initial-value="1" />
+        </id>
+
+        <field name="user_id" column="user_id" />
+		<field name="user_group_id" column="user_group_id" />
+		<field name="username" column="username" />
+		<field name="password" column="password" />
+		<field name="salt" column="salt" />
+		<field name="firstname" column="firstname" />
+		<field name="lastname" column="lastname" />
+		<field name="email" column="email" />
+		<field name="image" column="image" />
+		<field name="code" column="code" />
+		<field name="ip" column="ip" />
+		<field name="status" column="status" />
+		<field name="date_added" column="date_added" />
+    </entity>
+
+</doctrine-mapping>

@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping>
+ <!-- There is no foreign entity, just an object -->
+  <entity name="OcAddress" table="oc2_address" foreign="Address">
+    <id name="addressId" type="integer" column="address_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <!--<field name="firstname" type="string" column="firstname" length="32" nullable="false" foreign=>
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="lastname" type="string" column="lastname" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="company" type="string" column="company" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>-->
+    <field name="address1" type="string" column="address_1" length="128" nullable="false" foreign="Line1">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="address2" type="string" column="address_2" length="128" nullable="false" foreign="Line2">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="city" type="string" column="city" length="128" nullable="false" foreign="City">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="postcode" type="string" column="postcode" length="10" nullable="false" foreign="PostalCode">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="customField" type="text" column="custom_field" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="country" target-entity="OcCountry" fetch="LAZY">
+      <join-columns>
+        <join-column name="country_id" referenced-column-name="country_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="zone" target-entity="OcZone" fetch="LAZY">
+      <join-columns>
+        <join-column name="zone_id" referenced-column-name="zone_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="customer" target-entity="OcCustomer" fetch="LAZY">
+      <join-columns>
+        <join-column name="customer_id" referenced-column-name="customer_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+  
+  <entity name="OcCustomer" table="oc2_customer" foreign="Customer">
+    <id name="customerId" type="integer" column="customer_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+	<field name="displayName" type="string" column="display_name" length="96" nullable="true" foreign="DisplayName">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+	<field name="companyName" type="string" column="company_name" length="96" nullable="false" foreign="CompanyName">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+	<field name="printOnCheckName" type="string" column="print_on_check_name" length="96" nullable="true" foreign="PrintOnCheckName">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="firstname" type="string" column="firstname" length="32" nullable="true" foreign="GivenName">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+	<field name="middlename" type="string" column="middlename" length="32" nullable="true" foreign="MiddleName">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="lastname" type="string" column="lastname" length="32" nullable="true" foreign="FamilyName">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+	
+	<!-- This is annoying but Keith Palmer's lib doesn't work quite as expected and as result I will have to change the way I'm creating these nested objects -->
+    <!-- What I want to do: <field name="email" type="string" column="email" length="96" nullable="false" foreign="PrimaryEmailAddr:Email->Address">-->
+    <field name="email" type="string" column="email" length="96" nullable="false" foreign="PrimaryEmailAddr:PrimaryEmailAddr->Address">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="telephone" type="string" column="telephone" length="32" nullable="false" foreign="PrimaryPhone:PrimaryPhone->FreeFormNumber">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="fax" type="string" column="fax" length="32" nullable="false" foreign="Fax:Fax->FreeFormNumber">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="password" type="string" column="password" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="salt" type="string" column="salt" length="9" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="cart" type="text" column="cart" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="wishlist" type="text" column="wishlist" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="newsletter" type="boolean" column="newsletter" nullable="false">
+      <options>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="customField" type="text" column="custom_field" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ip" type="string" column="ip" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="status" type="boolean" column="status" nullable="false" foreign="Active"/>
+    <field name="approved" type="boolean" column="approved" nullable="false"/>
+    <field name="safe" type="boolean" column="safe" nullable="false"/>
+    <field name="token" type="text" column="token" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dateAdded" type="datetime" column="date_added" nullable="false"/>
+    <!--<many-to-one field="address" target-entity="OcAddress" fetch="LAZY" foreign="BillAddr:Address,ShipAddr:Address">-->
+    <many-to-one field="address" target-entity="OcAddress" fetch="LAZY" foreign="BillAddr:Address">
+      <join-columns>
+        <join-column name="address_id" referenced-column-name="address_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="customerGroup" target-entity="OcCustomerGroup" fetch="LAZY">
+      <join-columns>
+        <join-column name="customer_group_id" referenced-column-name="customer_group_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="store" target-entity="OcStore" fetch="LAZY">
+      <join-columns>
+        <join-column name="store_id" referenced-column-name="store_id"/>
+      </join-columns>
+    </many-to-one>
+	<ref name="parentRef" type="integer" column="parent_ref_id" foreign="ParentRef"></ref>
+	<ref name="currencyRef" type="integer" column="currency_ref" foreign="CurrencyRef"></ref>
+	<ref name="salesTermRef" type="integer" column="sales_term_ref" foreign="SalesTermRef"></ref>
+	<ref name="taxCodeRef" type="integer" column="tax_code_ref" foreign="DefaultTaxCodeRef"></ref>
+	<ref name="isJob" type="integer" column="is_job" foreign="Job"></ref>
+	<ref name="fullyQualifiedName" type="string" column="fully_qualified_name" foreign="FullyQualifiedName"></ref>
+  </entity>
+  
+  <entity name="OcProduct" table="oc2_product" foreign="Item">
+    <id name="productId" type="integer" column="product_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+	<field name="qbname" type="string" column="qbname" length="255" nullable="false" foreign="FullyQualifiedName">
+	  <options>
+		<option name="fixed"/>
+	  </options>
+	</field>
+	<field name="model" type="string" column="model" length="255" nullable="false" foreign="Name">
+	  <options>
+		<option name="fixed"/>
+	  </options>
+	</field>
+	<field name="sku" type="string" column="sku" length="255" nullable="false" foreign="Sku">
+	  <options>
+		<option name="fixed"/>
+	  </options>
+	</field>
+	<field name="mpn" type="string" column="mpn" length="255" nullable="false">
+	  <options>
+		<option name="fixed"/>
+	  </options>
+	</field>
+	<field name="quantity" type="integer" column="quantity" nullable="true" foreign="QtyOnHand">
+	</field>
+	<field name="price" type="decimal" column="price" nullable="true" foreign="UnitPrice">
+		<options>
+		  <option name="unsigned"/>
+		  <option name="default">0</option>
+		</options>
+	</field>
+	<field name="poCost" type="decimal" column="po_cost" nullable="true" foreign="PurchaseCost">
+	  <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+	</field>
+    <!-- Let OC/QC/QB handle this on their own -->
+	<!--<field name="dateAdded" type="datetime" column="date_added" nullable="true" foreign="MetaData->CreateTime"></field>-->
+	<field name="dateModified" type="datetime" column="date_modified" nullable="true" foreign="MetaData:MetaData->LastUpdatedTime"></field>
+	<!-- Refs foreign properties that are unmapped to OpenCart entities but that are stored in db -->
+	<ref name="name" type="string" column="name" foreign="FullyQualifiedName"></ref>
+	<ref name="trackInventory" type="integer" column="track_inventory" foreign="TrackQtyOnHand"></ref>
+	<ref name="type" type="integer" column="type" foreign="Type"></ref>
+	<ref name="incomeAccountRef" type="integer" column="income_account_ref" foreign="IncomeAccountRef"></ref>
+	<ref name="expenseAccountRef" type="integer" column="expense_account_ref" foreign="ExpenseAccountRef"></ref>
+	<ref name="assetAccountRef" type="integer" column="asset_account_ref" foreign="AssetAccountRef"></ref>
+	<ref name="parentRef" type="integer" column="parent_ref_id" foreign="ParentRef"></ref>
+	<!--<ref name="salesTaxInclusive" type="integer" column="sales_tax_inclusive" foreign="SalesTaxInclusive"></ref>-->
+  </entity>
+  
+  <entity name="OcProductDescription" table="oc2_product_description" foreign="Item">
+	<indexes>
+	  <index name="name" columns="name"/>
+	</indexes>
+	<id name="productId" type="integer" column="product_id"/>
+	<id name="languageId" type="integer" column="language_id" nullable="true"/>
+	<!--<field name="name" type="string" column="name" length="255" nullable="false" foreign="Sku"></field>-->
+	<!--<field name="name" type="string" column="name" length="255" nullable="false" foreign="Name"></field>-->
+	<field name="description" type="text" column="description" length="65535" nullable="false" foreign="Description"></field>
+	<field name="metaDescription" type="text" column="meta_description" length="65535" nullable="false" foreign="Description"></field>
+  </entity>
+  
+  <entity name="OcInvoice" table="oc2_qctr_invoice" foreign="Invoice">
+    <id name="invoiceId" type="integer" column="invoice_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+	<field name="transactionId" type="integer" column="transaction_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+	<field name="feedId" type="integer" column="feed_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+	<field name="ocEntityId" type="integer" column="oc_entity_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="invoiceNo" type="integer" column="invoice_no" nullable="false" foreign="DocNumber">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="invoicePrefix" type="string" column="invoice_prefix" length="26" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billEmail" type="string" column="bill_email" length="96" foreign="BillEmail:BillEmail->Address">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddr1" type="string" column="bill_addr_line_1" length="128" nullable="false" foreign="BillAddr:BillAddr->Line1">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddr2" type="string" column="bill_addr_line_2" length="128" nullable="false" foreign="BillAddr:BillAddr->Line2">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddrCity" type="string" column="bill_addr_city" length="128" nullable="false" foreign="BillAddr:BillAddr->City">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddrPostcode" type="string" column="bill_addr_postcode" length="10" nullable="false" foreign="BillAddr:BillAddr->PostalCode">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddrCountry" type="string" column="bill_addr_country" length="128" nullable="false" foreign="BillAddr:BillAddr->Country">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddrCountryId" type="integer" column="bill_addr_country_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="billAddrZone" type="string" column="bill_addr_zone" length="128" nullable="false" foreign="BillAddr:BillAddr->CountrySubDivisionCode">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="billAddrZoneId" type="integer" column="bill_addr_zone_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="paymentMethod" type="string" column="payment_method" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="paymentCode" type="string" column="payment_code" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    
+    <field name="shipAddrLine1" type="string" column="ship_addr_line_1" length="128" nullable="false" foreign="ShipAddr:ShipAddr->Line1">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipAddrLine2" type="string" column="ship_addr_line_2" length="128" nullable="false" foreign="ShipAddr:ShipAddr->Line2">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipAddrCity" type="string" column="ship_addr_city" length="128" nullable="false" foreign="ShipAddr:ShipAddr->City">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipAddrPostcode" type="string" column="ship_addr_postcode" length="10" nullable="false" foreign="ShipAddr:ShipAddr->PostalCode">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipAddrCountry" type="string" column="ship_addr_country" length="128" nullable="false" foreign="ShipAddr:ShipAddr->Country">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipAddrCountryId" type="integer" column="ship_addr_country_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="shipAddrZone" type="string" column="ship_addr_zone" length="128" nullable="false" foreign="ShipAddr:ShipAddr->CountrySubDivisionCode">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipAddrZoneId" type="integer" column="ship_addr_zone_id" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="shippingMethod" type="string" column="shipping_method" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shippingCode" type="string" column="shipping_code" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="customerMemo" type="text" column="customer_memo" length="65535" nullable="false" foreign="CustomerMemo">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="statementMemo" type="text" column="statement_memo" length="65535" nullable="false" foreign="PrivateNote">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="total" type="decimal" column="total" precision="15" scale="4" nullable="false" foreign="TotalAmt">
+      <options>
+        <option name="default">0.0000</option>
+      </options>
+    </field>
+	<field name="balance" type="decimal" column="balance" precision="15" scale="4" nullable="false" foreign="Balance">
+      <options>
+        <option name="default">0.0000</option>
+      </options>
+    </field>
+	<field name="deposit" type="decimal" column="deposit" precision="15" scale="4" nullable="false" foreign="Deposit">
+      <options>
+        <option name="default">0.0000</option>
+      </options>
+    </field>
+
+    <field name="invoiceDate" type="datetime" column="invoice_date" nullable="false" foreign="TxnDate"/>
+    <field name="dueDate" type="datetime" column="due_date" nullable="false" foreign="DueDate"/>
+
+    <!--<many-to-one field="invoiceStatus" target-entity="OcInvoiceStatus" fetch="LAZY">
+      <join-columns>
+        <join-column name="invoice_status_id" referenced-column-name="invoice_status_id"/>
+      </join-columns>
+    </many-to-one>-->
+	
+	<one-to-one field="transaction" target-entity="OcTransaction" fetch="LAZY">
+      <join-columns>
+        <join-column name="transaction_id" referenced-column-name="transaction_id"/>
+      </join-columns>
+    </one-to-one>
+	
+	<one-to-many field="lines" target-entity="OcInvoiceLine" inversed-by="invoice" fetch="LAZY">
+      <join-columns>
+        <join-column name="invoice_id" referenced-column-name="invoice_id"/>
+      </join-columns>
+    </one-to-many>
+	
+    <many-to-one field="customer" target-entity="OcCustomer" fetch="LAZY">
+      <join-columns>
+        <join-column name="customer_id" referenced-column-name="customer_id"/>
+      </join-columns>
+    </many-to-one>
+    
+	<!--<many-to-one field="currency" target-entity="OcCurrency" fetch="LAZY">
+      <join-columns>
+        <join-column name="currency_id" referenced-column-name="currency_id"/>
+      </join-columns>
+    </many-to-one>-->
+	
+	<!-- Departments could be used to distinguish OC stores -->
+	<ref name="departmentRef" type="string" referenced-column-name="department_ref" foreign="DepartmentRef"></ref>
+	<ref name="classRef" type="string" referenced-column-name="class_ref" foreign="ClassRef"></ref>
+	<ref name="salesTermRef" type="string" referenced-column-name="sales_term_ref" foreign="SalesTermRef"></ref>
+	<ref name="shippingMethodRef" type="string" referenced-column-name="shipping_method_ref" foreign="ShippingMethodRef"></ref>
+	<ref name="trackingNo" type="string" referenced-column-name="tracking_no" foreign="TrackingNum"></ref>
+  </entity>
+  
+  <entity name="OcInvoiceLine" table="oc2_qctr_invoice_line" foreign="Line">
+    <id name="lineId" type="integer" column="line_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+	<!--<field name="orderProductId" type="integer" column="order_product_id"></field>
+	<field name="orderId" type="integer" column="order_id"></field>
+	<field name="productId" type="integer" column="product_id"></field>-->
+	<ref name="itemRef" type="string" referenced-column-name="item_ref" foreign="ItemRef"></ref>
+	<ref name="classRef" type="string" referenced-column-name="class_ref" foreign="ClassRef"></ref>
+	<ref name="priceLevelRef" type="string" referenced-column-name="price_level_ref" foreign="PriceLevelRef"></ref>
+	<ref name="taxCodeRef" type="string" referenced-column-name="tax_code_ref" foreign="TaxCodeRef"></ref>
+	<ref name="discountRef" type="string" referenced-column-name="discount_ref" foreign="DiscountRef"></ref>
+	<ref name="percentBased" type="integer" referenced-column-name="percent_based" foreign="PercentBased"></ref>
+	<ref name="discountPercent" type="integer" referenced-column-name="discount_percent" foreign="DiscountPercent"></ref>
+	<ref name="discountAccountRef" type="integer" referenced-column-name="discount_account_ref" foreign="DiscountAccountRef"></ref>
+    <field name="name" type="string" column="name" length="255" nullable="false" foreign="Description">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="model" type="string" column="model" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+	
+	<!-- NEW Mappings -->
+	<field name="quantity" type="integer" column="quantity" nullable="false" foreign="*">
+      <foreign local="SalesItemLineDetail">SalesItemLineDetail->Qty</foreign>
+	  <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+	
+    <field name="price" type="decimal" column="price" precision="15" scale="4" nullable="false" foreign="*">
+		<foreign local="SalesItemLineDetail">SalesItemLineDetail->UnitPrice</foreign>
+		<options>
+          <option name="default">0.0000</option>
+        </options>
+    </field>
+	
+    <field name="total" type="decimal" column="total" precision="15" scale="4" nullable="false" foreign="Amount">
+      <options>
+        <option name="default">0.0000</option>
+      </options>
+    </field>
+	
+    <field name="tax" type="decimal" column="tax" precision="15" scale="4" nullable="false">
+      <options>
+        <option name="default">0.0000</option>
+      </options>
+    </field>
+    <field name="reward" type="integer" column="reward" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <!--<many-to-one field="order" target-entity="OcOrder" fetch="LAZY">
+      <join-columns>
+        <join-column name="order_id" referenced-column-name="order_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="product" target-entity="OcProduct" fetch="LAZY">
+      <join-columns>
+        <join-column name="product_id" referenced-column-name="product_id"/>
+      </join-columns>
+    </many-to-one>-->
+  </entity>
+  
+  <entity name="OcOrderOption" table="oc2_order_option">
+    <id name="orderOptionId" type="integer" column="order_option_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="value" type="text" column="value" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="type" type="string" column="type" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="orderProduct" target-entity="OcOrderProduct" fetch="LAZY">
+      <join-columns>
+        <join-column name="order_product_id" referenced-column-name="order_product_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="productOptionValue" target-entity="OcProductOptionValue" fetch="LAZY">
+      <join-columns>
+        <join-column name="product_option_value_id" referenced-column-name="product_option_value_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="productOption" target-entity="OcProductOption" fetch="LAZY">
+      <join-columns>
+        <join-column name="product_option_id" referenced-column-name="product_option_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="order" target-entity="OcOrder" fetch="LAZY">
+      <join-columns>
+        <join-column name="order_id" referenced-column-name="order_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+
+  <entity name="OcAccount" table="oc2_qc_account" foreign="Account">
+    <id name="accountId" type="integer" column="account_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+	<field name="accountNum" type="string" column="account_num" length="15" nullable="true" foreign="AcctNum">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="name" type="string" column="name" length="128" nullable="false" foreign="Name">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="parentId" type="integer" column="parent_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="status" type="boolean" column="status" nullable="false" foreign="Active">
+      <options>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="classification" type="string" column="classification" length="255" nullable="true" foreign="Classification">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="accountType" type="string" column="account_type" length="255" nullable="false" foreign="AccountType">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="accountSubType" type="string" column="account_sub_type" length="255" nullable="false" foreign="AccountSubType">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <ref name="parentRef" type="integer" column="parent_ref_id" foreign="ParentRef"></ref>
+  </entity>
+  
+  <entity name="OcCurrency" table="oc2_currency" foreign="CompanyCurrency">
+    <id name="currencyId" type="integer" column="currency_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="title" type="string" column="title" length="32" nullable="false" foreign="Name">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="code" type="string" column="code" length="3" nullable="false" foreign="Code">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="symbolLeft" type="string" column="symbol_left" length="12" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="symbolRight" type="string" column="symbol_right" length="12" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="decimalPlace" type="string" column="decimal_place" length="1" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="value" type="float" column="value" precision="15" scale="8" nullable="false"/>
+    <field name="status" type="boolean" column="status" nullable="false" foreign="Active"/>
+    <field name="dateModified" type="datetime" column="date_modified" nullable="false"/>
+  </entity>
+  
+  <entity name="OcTaxClass" table="oc2_tax_class" foreign="TaxCode">
+    <id name="taxClassId" type="integer" column="tax_class_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="title" type="string" column="title" length="32" nullable="false" foreign="Name">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="description" type="string" column="description" length="255" nullable="false" foreign="Description">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dateAdded" type="datetime" column="date_added" nullable="false"/>
+    <field name="dateModified" type="datetime" column="date_modified" nullable="false"/>
+  </entity>
+  
+  <entity name="OcTaxRate" table="oc2_tax_rate" foreign="TaxRate">
+    <indexes>
+      <index name="IDX_99D10D6E283AB2A9" columns="geo_zone_id"/>
+    </indexes>
+    <id name="taxRateId" type="integer" column="tax_rate_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="32" nullable="false" foreign="Name">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="rate" type="decimal" column="rate" precision="15" scale="4" nullable="false" foreign="RateValue">
+      <options>
+        <option name="default">0.0000</option>
+      </options>
+    </field>
+    <field name="type" type="string" column="type" length="1" nullable="false">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="dateAdded" type="datetime" column="date_added" nullable="false"/>
+    <field name="dateModified" type="datetime" column="date_modified" nullable="false"/>
+    
+	<many-to-one field="geoZone" target-entity="OcGeoZone" fetch="LAZY">
+      <join-columns>
+        <join-column name="geo_zone_id" referenced-column-name="geo_zone_id"/>
+      </join-columns>
+    </many-to-one>
+    
+	<many-to-many field="customerGroup" target-entity="OcCustomerGroup" inversed-by="taxRate" fetch="LAZY">
+      <join-table name="oc2_tax_rate_to_customer_group">
+        <join-columns>
+          <join-column name="tax_rate_id" referenced-column-name="tax_rate_id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="customer_group_id" referenced-column-name="customer_group_id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+	
+	<ref name="agencyRef" type="integer" column="agency_ref" foreign="AgencyRef"></ref>
+	<ref name="taxReturnLineRef" type="integer" column="tax_return_line_ref" foreign="TaxReturnLineRef"></ref>
+	<ref name="specialTaxType" type="string" column="special_tax_type" foreign="SpecialTaxType"></ref>
+	<ref name="displayType" type="string" column="display_type" foreign="DisplayType"></ref>
+	<ref name="effectiveTaxRate" type="string" column="effective_tax_rate" foreign="EffectiveTaxRate"></ref>
+  </entity>
+</doctrine-mapping>

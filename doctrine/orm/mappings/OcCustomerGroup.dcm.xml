@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OcCustomerGroup" table="oc2_customer_group">
+    <id name="customerGroupId" type="integer" column="customer_group_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="approval" type="integer" column="approval" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="sortOrder" type="integer" column="sort_order" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-many field="taxRate" target-entity="OcTaxRate" mapped-by="customerGroup" fetch="LAZY"/>
+    <many-to-many field="language" target-entity="OcLanguage" inversed-by="customerGroup" fetch="LAZY">
+      <join-table name="oc2_customer_group_description">
+        <join-columns>
+          <join-column name="customer_group_id" referenced-column-name="customer_group_id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="language_id" referenced-column-name="language_id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="customField" target-entity="OcCustomField" mapped-by="customerGroup" fetch="LAZY"/>
+  </entity>
+</doctrine-mapping>

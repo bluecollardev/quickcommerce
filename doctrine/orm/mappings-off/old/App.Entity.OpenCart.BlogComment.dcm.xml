@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\OpenCart\BlogComment" table="oc2_blog_comment">
+    <id name="blogCommentId" type="integer" column="blog_comment_id"/>
+    <id name="blogArticleId" type="integer" column="blog_article_id"/>
+    <id name="customerId" type="integer" column="customer_id"/>
+    <field name="author" type="string" column="author" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default"/>
+      </options>
+    </field>
+    <field name="email" type="string" column="email" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="text" type="text" column="text" length="65535" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="status" type="boolean" column="status" nullable="false">
+      <options>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="dateAdded" type="datetime" column="date_added" nullable="true"/>
+    <field name="dateModified" type="datetime" column="date_modified" nullable="true"/>
+  </entity>
+</doctrine-mapping>

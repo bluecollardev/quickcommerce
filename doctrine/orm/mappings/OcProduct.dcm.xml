@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OcProduct" table="oc2_product">
+    <indexes>
+      <index name="IDX_64A8B053F36AE655" columns="stock_status_id"/>
+      <index name="IDX_64A8B053A23B42D" columns="manufacturer_id"/>
+      <index name="IDX_64A8B053A94AAAE" columns="tax_class_id"/>
+      <index name="IDX_64A8B053A0206A65" columns="weight_class_id"/>
+      <index name="IDX_64A8B053DEBB62E6" columns="length_class_id"/>
+    </indexes>
+    <id name="productId" type="integer" column="product_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+	<field name="qbname" type="string" column="qbname" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+	<field name="parentId" type="integer" column="parent_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="model" type="string" column="model" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="sku" type="string" column="sku" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="upc" type="string" column="upc" length="12" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ean" type="string" column="ean" length="14" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="jan" type="string" column="jan" length="13" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="isbn" type="string" column="isbn" length="17" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="mpn" type="string" column="mpn" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="location" type="string" column="location" length="128" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="quantity" type="integer" column="quantity" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="image" type="string" column="image" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shipping" type="boolean" column="shipping" nullable="false">
+      <options>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="price" type="decimal" column="price" precision="15" scale="4" nullable="false">
+      <options>
+        <option name="default">0.0000</option>
+      </options>
+    </field>
+    <field name="cost" type="decimal" column="cost" precision="15" scale="4" nullable="true">
+      <options>
+        <option name="default">0.0000</option>
+      </options>
+    </field>
+    <field name="points" type="integer" column="points" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="dateAvailable" type="date" column="date_available" nullable="false">
+      <options>
+        <option name="default">0000-00-00</option>
+      </options>
+    </field>
+    <field name="weight" type="decimal" column="weight" precision="15" scale="8" nullable="false">
+      <options>
+        <option name="default">0.00000000</option>
+      </options>
+    </field>
+    <field name="length" type="decimal" column="length" precision="15" scale="8" nullable="false">
+      <options>
+        <option name="default">0.00000000</option>
+      </options>
+    </field>
+    <field name="width" type="decimal" column="width" precision="15" scale="8" nullable="false">
+      <options>
+        <option name="default">0.00000000</option>
+      </options>
+    </field>
+    <field name="height" type="decimal" column="height" precision="15" scale="8" nullable="false">
+      <options>
+        <option name="default">0.00000000</option>
+      </options>
+    </field>
+    <field name="subtract" type="boolean" column="subtract" nullable="false">
+      <options>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="minimum" type="integer" column="minimum" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="sortOrder" type="integer" column="sort_order" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="status" type="boolean" column="status" nullable="false">
+      <options>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="viewed" type="integer" column="viewed" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="dateAdded" type="datetime" column="date_added" nullable="false"/>
+    <field name="dateModified" type="datetime" column="date_modified" nullable="false"/>
+    
+	<many-to-one field="weightClass" target-entity="OcWeightClass" fetch="LAZY">
+      <join-columns>
+        <join-column name="weight_class_id" referenced-column-name="weight_class_id"/>
+      </join-columns>
+    </many-to-one>
+    
+	<many-to-one field="lengthClass" target-entity="OcLengthClass" fetch="LAZY">
+      <join-columns>
+        <join-column name="length_class_id" referenced-column-name="length_class_id"/>
+      </join-columns>
+    </many-to-one>
+    
+	<many-to-one field="stockStatus" target-entity="OcStockStatus" fetch="LAZY">
+      <join-columns>
+        <join-column name="stock_status_id" referenced-column-name="stock_status_id"/>
+      </join-columns>
+    </many-to-one>
+	
+    <one-to-one field="taxClass" target-entity="OcTaxClass" fetch="LAZY">
+      <join-columns>
+        <join-column name="tax_class_id" referenced-column-name="tax_class_id"/>
+      </join-columns>
+    </one-to-one>
+    
+	<many-to-one field="manufacturer" target-entity="OcManufacturer" fetch="LAZY">
+      <join-columns>
+        <join-column name="manufacturer_id" referenced-column-name="manufacturer_id"/>
+      </join-columns>
+    </many-to-one>
+    
+	<many-to-many field="filter" target-entity="OcFilter" inversed-by="product" fetch="LAZY">
+      <join-table name="oc2_product_filter">
+        <join-columns>
+          <join-column name="product_id" referenced-column-name="product_id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="filter_id" referenced-column-name="filter_id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+	
+	<one-to-many field="description" target-entity="OcProductDescription" mapped-by="product" fetch="LAZY"/>
+	
+	<one-to-many field="attribute" target-entity="OcProductAttribute" mapped-by="product" fetch="LAZY"/>
+	
+	<one-to-many field="option" target-entity="OcProductOption" mapped-by="product" fetch="LAZY"/>
+	
+	<one-to-many field="images" target-entity="OcProductImage" mapped-by="product" fetch="LAZY"/>
+	
+	<one-to-many field="discount" target-entity="OcProductDiscount" mapped-by="product" fetch="LAZY"/>
+	
+	<one-to-many field="special" target-entity="OcProductSpecial" mapped-by="product" fetch="LAZY"/>
+    
+	<one-to-many field="reward" target-entity="OcProductReward" mapped-by="product" fetch="LAZY"/>
+	
+	<many-to-many field="category" target-entity="OcCategory" inversed-by="product" fetch="LAZY">
+      <join-table name="oc2_product_to_category">
+        <join-columns>
+          <join-column name="product_id" referenced-column-name="product_id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="category_id" referenced-column-name="category_id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+	
+	<many-to-many field="download" target-entity="OcDownload" inversed-by="product" fetch="LAZY">
+      <join-table name="oc2_product_to_download">
+        <join-columns>
+          <join-column name="product_id" referenced-column-name="product_id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="download_id" referenced-column-name="download_id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    
+	<many-to-many field="store" target-entity="OcStore" inversed-by="product" fetch="LAZY">
+      <join-table name="oc2_product_to_store">
+        <join-columns>
+          <join-column name="product_id" referenced-column-name="product_id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="store_id" referenced-column-name="store_id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OcTransaction" table="oc2_qctr">
+    <indexes>
+      <index name="IDX_1864E5A1B092A811" columns="store_id"/>
+      <index name="IDX_1864E5A138248176" columns="currency_id"/>
+    </indexes>
+    <id name="transactionId" type="integer" column="transaction_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="ocEntityId" type="integer" column="oc_entity_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="storeName" type="string" column="store_name" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="storeUrl" type="string" column="store_url" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="currencyCode" type="string" column="currency_code" length="3" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="currencyValue" type="decimal" column="currency_value" precision="15" scale="8" nullable="false">
+      <options>
+        <option name="default">1.00000000</option>
+      </options>
+    </field>
+    <field name="ip" type="string" column="ip" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="forwardedIp" type="string" column="forwarded_ip" length="40" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="userAgent" type="string" column="user_agent" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="acceptLanguage" type="string" column="accept_language" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dateAdded" type="datetime" column="date_added" nullable="false"/>
+    <field name="dateModified" type="datetime" column="date_modified" nullable="false"/>
+    <!-- Store ID can be 0 so I can't just associate, gonna need some custom logic -->
+	<many-to-one field="store" target-entity="OcStore" fetch="LAZY">
+      <join-columns>
+        <join-column name="store_id" referenced-column-name="store_id"/>
+      </join-columns>
+    </many-to-one>
+    <!-- Currency ID can be 0 so I can't just associate, gonna need some custom logic -->
+	<many-to-one field="currency" target-entity="OcCurrency" fetch="LAZY">
+      <join-columns>
+        <join-column name="currency_id" referenced-column-name="currency_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

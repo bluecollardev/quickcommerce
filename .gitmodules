@@ -1,0 +1,18 @@
+[submodule "vendor/opencart"]
+	path = vendor/opencart
+	url = https://github.com/opencart/opencart.git
+[submodule "vendor/kpaged"]
+	path = vendor/kpaged
+	url = https://github.com/blogshop/kpaged.git
+[submodule "vendor/jquery/community/jquery.xmleditor"]
+	path = vendor/jquery/community/jquery.xmleditor
+	url = https://github.com/UNC-Libraries/jquery.xmleditor.git
+[submodule "vendor/intuit/quickbooks-php-sdk"]
+	path = vendor/intuit/quickbooks-php-sdk
+	url = devct@dev.caffetech.com:/home/devct/public_html/repo/quickbooks-php-sdk.git
+[submodule "embedded/pos"]
+	path = embedded/pos
+	url = ssh://devct@dev.caffetech.com:/home/devct/public_html/repo/quickcommerce-pos.git
+[submodule "vendor/unlockbase/quickcommerce-oc"]
+	path = vendor/unlockbase/quickcommerce-oc
+	url = /var/www/php-5.5.19/quickcommerce/vendor/opencart
